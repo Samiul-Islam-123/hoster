@@ -60,26 +60,15 @@ async function DeployApplication(gitURL, projectName, targetFolder,envVariables)
   log.info("Tunneling into a public link...");
   const output = await RunCommand(`~/telebit http ${dynamicPort} ${projectName.toLowerCase()}`);
   log.info(output);
+  return output;
 }
 
 
-// Loop through sampleENV and dynamically create the `-e` flags for docker run
-const sampleENV = {
-  DB_URL: "mongodb+srv://isamiul099:1o3N6qdppkSANbtD@cluster0.82tmx.mongodb.net/dev_cluster?retryWrites=true&w=majority&appName=Cluster0",
-  CLOUDINARY_CLOUD_NAME: "duwx8enno",
-  CLOUDINARY_API_KEY: "174881656337715",
-  CLOUDINARY_API_SECRET: "dN0vbjrv4bBMb2mi1tMdyODci1k",
-  STRIPE_SECRET_KEY: "sk_test_51QLrAdATuFnOEMSezUetNvu3nzzdqymEV1qpT13T4TCNKZDq7IZi2N1jQaCfCipPO287KRrTKUDSxPsVbQ073DS8004gbNppFa",
-  CLIENT_URL: "https://www.lessortiesdediane.com",
-  PASS: "deeraaaocilwrpagP",
-  USER: "zonechill204@gmail.com",
-  BACKEND_URL: "https://api.lessortiesdediane.com"
-};
 
-let envVariables = '';
-for (const [key, value] of Object.entries(sampleENV)) {
-  envVariables += `-e ${key}="${value}" `;
-}
 
-DeployApplication(`https://github.com/Samiul-Islam-123/event-management.git`, "event-management-system","backend",  envVariables);
+
+
+//DeployApplication(`https://github.com/Samiul-Islam-123/event-management.git`, "event-management-system","backend",  envVariables);
 //DeployApplication(`https://github.com/Samiul-Islam-123/node-app.git`, "MyProject", );
+
+module.exports = DeployApplication;
