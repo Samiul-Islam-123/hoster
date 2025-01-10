@@ -28,7 +28,7 @@ program
 
     try {
       console.log(chalk.blue("Starting deployment..."));
-      const response = await axios.post("http://localhost:5500/deploy", {
+      const response = await axios.post("https://tough-dolphin-45.telebit.io/deploy", {
         repoURL: url,
         username: username,
         targetFolder: targetFolder, // Send targetFolder to the server

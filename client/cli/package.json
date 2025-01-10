@@ -4,6 +4,7 @@
   "description": "A CLI tool for deploying and managing applications.",
   "main": "hoster-cli.js",
   "type": "module",
+  "version" : "1.0.1",
   "bin": {
     "hoster": "./hoster-cli.js"
   },
