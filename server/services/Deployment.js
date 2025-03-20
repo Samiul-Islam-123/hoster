@@ -79,6 +79,7 @@ async function DeployStaticWebsite(githubRepoURL, username) {
   // Clone repo
   console.log('Cloning GitHub repo:', githubRepoURL);
   await RunCommand(`sudo git clone ${githubRepoURL}`, `/var/www/`);
+  console.log("done...")
 
   // Create Nginx configuration content
   const nginxConfigContent = `
@@ -110,10 +111,10 @@ server {
   console.log('Reloading Nginx...');
   await RunCommand('sudo systemctl restart nginx');
 
-  console.log(`Deployment complete. Your project is available at http://localhost:${dynamicPort}`);
+  console.log(`Deployment complete. Your project is available at http://${getLocalIPAddress()}:${dynamicPort}`);
 
   log.info("Tunneling into a public link...");
-  const output = await RunCommand(`~/telebit http ${dynamicPort} ${projectName.toLowerCase()}`);
+  const output = await RunCommand(`sudo ~/telebit http ${dynamicPort} ${projectName.toLowerCase()}`);
   log.info(output);
 }
 
@@ -123,8 +124,8 @@ server {
 
 //DeployApplication(`https://github.com/Samiul-Islam-123/event-management.git`, "event-management-system","backend",  envVariables);
 //DeployApplication(`https://github.com/Samiul-Islam-123/node-app.git`, "MyProject", );
-//DeployStaticWebsite(`https://github.com/cloudacademy/static-website-example.git`, 'SampleUser');
-//DeployStaticWebsite(`https://github.com/vaibhav1741/ShoppingSystem.git`, "SampleUser2");
+//DeployStaticWebsite(`https://github.com/Samiul-Islam-123/adamitras.git`,"client",  ,'Adamitras');
+DeployStaticWebsite(`https://github.com/vaibhav1741/ShoppingSystem.git`, "SampleUser2");
 //DeployStaticWebsite(`https://github.com/candytale55/dasmoto.git`, "SampleUser3");
 //DeployStaticWebsite(`https://github.com/pro-prodipto/Netflix-Website-Project.git`, "SampleUser4");
 
